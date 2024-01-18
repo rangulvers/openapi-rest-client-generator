@@ -4,7 +4,7 @@
 
 This tool automatically generates `.http` files for the VSCode REST Client from an OpenAPI (Swagger) specification. It supports both local and remote (URL) OpenAPI JSON files.
 
-<img width="862" alt="image" src="https://github.com/rangulvers/openapi-rest-client-generator/assets/5235430/30731836-8ee9-498b-816c-c446bfb12c97">
+![image](https://github.com/rangulvers/openapi-rest-client-generator/assets/5235430/4e944c65-44da-43a3-bd74-902d41390c3d)
 
 
 ## Features
