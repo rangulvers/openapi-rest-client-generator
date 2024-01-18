@@ -1,7 +1,8 @@
 import json
 import sys
+from urllib.parse import urlparse
 import requests
-from urllib.parse import urljoin, urlparse
+
 
 def fetch_swagger_json(source):
     """
@@ -9,23 +10,21 @@ def fetch_swagger_json(source):
     """
     parsed_url = urlparse(source)
     if parsed_url.scheme in ('http', 'https'):
-        response = requests.get(source)
+        response = requests.get(source, timeout=60)
         response.raise_for_status()
         return response.json()
-    else:
-        with open(source, 'r') as f:
-            return json.load(f)
+    with open(source, 'r', encoding="utf-8") as f:
+        return json.load(f)
 
-def generate_http_file(swagger_json, output_file):
+def generate_http_file(swagger_json_input, output_http_file):
     """
     Generates a .http file from Swagger JSON.
     """
-    host = swagger_json['host']
-    base_path = ensure_trailing_slash(swagger_json.get('basePath', '/'))
-    schemes = swagger_json['schemes']
-    
-    with open(output_file, "w") as f:
-        for path, methods in swagger_json['paths'].items():
+    host = swagger_json_input['host']
+    base_path = ensure_trailing_slash(swagger_json_input.get('basePath', '/'))
+    schemes = swagger_json_input['schemes']
+    with open(output_http_file, "w", encoding="utf-8") as f:
+        for path, methods in swagger_json_input['paths'].items():
             for method, details in methods.items():
                 request_url = build_request_url(schemes[0], host, base_path, path)
                 comments, query_params = process_parameters(details.get('parameters', []))
@@ -81,7 +80,7 @@ def create_headers(parameters):
     headers = ''
     for parameter in parameters:
         if parameter['in'] == 'header':
-            headers += f"{parameter['name']}: {parameter.get('default', '{' + parameter['name'] + '}')}\n"
+            headers += f"{parameter['name']}:{parameter.get('default','{'+parameter['name']+'}')}\n"
     return headers
 
 def create_body(parameters):
@@ -99,13 +98,12 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python script.py <swagger-json-source> <output-http-file>")
         sys.exit(1)
-    
     swagger_json_source = sys.argv[1]
     output_file = sys.argv[2]
-    
     try:
         swagger_json = fetch_swagger_json(swagger_json_source)
         generate_http_file(swagger_json, output_file)
         print(f'Successfully created {output_file} from {swagger_json_source}')
     except Exception as e:
         print(f"An error occurred: {e}")
+        
