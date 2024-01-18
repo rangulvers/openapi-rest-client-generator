@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='openapi-gen',
+    name='gen-openapi-rest',
     version='0.1',
     packages=find_packages(),
     description='Generate .http files from OpenAPI/Swagger JSON. to be used with VS Code REST Client.',
