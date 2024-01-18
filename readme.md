@@ -1,3 +1,5 @@
+[![Upload Python Package](https://github.com/rangulvers/openapi-rest-client-generator/actions/workflows/python-publish.yml/badge.svg)](https://github.com/rangulvers/openapi-rest-client-generator/actions/workflows/python-publish.yml)
+
 # OpenAPI to VSCode REST Client Generator
 
 This tool automatically generates `.http` files for the VSCode REST Client from an OpenAPI (Swagger) specification. It supports both local and remote (URL) OpenAPI JSON files.
