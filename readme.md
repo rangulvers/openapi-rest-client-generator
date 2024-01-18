@@ -4,6 +4,9 @@
 
 This tool automatically generates `.http` files for the VSCode REST Client from an OpenAPI (Swagger) specification. It supports both local and remote (URL) OpenAPI JSON files.
 
+<img width="862" alt="image" src="https://github.com/rangulvers/openapi-rest-client-generator/assets/5235430/30731836-8ee9-498b-816c-c446bfb12c97">
+
+
 ## Features
 
 - Fetch OpenAPI JSON from a URL or a local file.
@@ -26,6 +29,7 @@ To use the OpenAPI to VSCode REST Client Generator, follow these steps:
 3. Run the script using the following command:
 
 The file can be loaded locally or pulled directly from an url e.g `https://petstore.swagger.io/v2/swagger.json` 
+
 
 ```bash
 python gen_openapi_rest.py <swagger-json-source> <output-http-file>
