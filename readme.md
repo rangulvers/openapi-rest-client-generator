@@ -26,4 +26,4 @@ To use the OpenAPI to VSCode REST Client Generator, follow these steps:
 3. Run the script using the following command:
 
 ```bash
-python openapi_to_http.py <swagger-json-source> <output-http-file>
+python gen_openapi_rest.py <swagger-json-source> <output-http-file>
