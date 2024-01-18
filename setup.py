@@ -11,10 +11,7 @@ setup(
     url='https://github.com/rangulvers/openapi-rest-client-generator',
     license='LICENSE',
     install_requires=[
-        'requests',
-        'json',
-        'sys',
-        'urllib'
+        'requests'
     ],
     classifiers=[
         # Trove classifiers
