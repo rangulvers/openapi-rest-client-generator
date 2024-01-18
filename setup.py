@@ -5,7 +5,7 @@ setup(
     version='0.1',
     packages=find_packages(),
     description='Generate .http files from OpenAPI/Swagger JSON. to be used with VS Code REST Client.',
-    long_description=open('readme.md').read(),
+    long_description='Generate .http files from OpenAPI/Swagger JSON. to be used with VS Code REST Client',
     long_description_content_type='text/markdown',
     author='rangulvers',
     url='https://github.com/rangulvers/openapi-rest-client-generator',
