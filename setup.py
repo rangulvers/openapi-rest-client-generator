@@ -17,7 +17,8 @@ setup(
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.org/classifiers/
-        'License :: MIT License',
+        'Development Status :: 3 - Alpha',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
     ],
 )
