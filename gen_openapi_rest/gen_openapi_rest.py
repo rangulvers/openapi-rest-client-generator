@@ -2,7 +2,7 @@
 
 """
 # pylint: disable=line-too-long
-# pylint: disbale=broad-exception-caught
+# pylint: disable=broad-exception-caught
 # pylint: disable=invalid-name
 import json
 import sys
