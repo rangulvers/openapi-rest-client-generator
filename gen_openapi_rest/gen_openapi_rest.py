@@ -1,3 +1,6 @@
+"""Generates a .http file from a Swagger JSON file.
+    
+"""
 import json
 import sys
 from urllib.parse import urlparse
