@@ -1,6 +1,9 @@
 """Generates a .http file from a Swagger JSON file.
-    
+
 """
+# pylint: disable=line-too-long
+# pylint: disbale=broad-exception-caught
+# pylint: disable=invalid-name
 import json
 import sys
 from urllib.parse import urlparse
