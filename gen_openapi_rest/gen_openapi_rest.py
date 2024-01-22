@@ -22,22 +22,36 @@ def fetch_swagger_json(source):
     with open(source, 'r', encoding="utf-8") as f:
         return json.load(f)
 
-def generate_http_file(swagger_json_input, output_http_file):
+def generate_http_file(swagger_json_input, output_file_input):
+    """_summary_
+
+    Args:
+        swagger_json_input (_type_): _description_
+        output_file (_type_): _description_
     """
-    Generates a .http file from Swagger JSON.
-    """
-    host = swagger_json_input['host']
-    base_path = ensure_trailing_slash(swagger_json_input.get('basePath', '/'))
-    schemes = swagger_json_input['schemes']
-    with open(output_http_file, "w", encoding="utf-8") as f:
+    # Check for OpenAPI version and handle 'servers' or 'host' + 'basePath'
+    if swagger_json_input.get('openapi', '').startswith('3.'):
+        # OpenAPI 3.x.x
+        servers = swagger_json_input.get('servers', [])
+        base_url = servers[0]['url'] if servers else ''
+    else:
+        # Swagger 2.0
+        host = swagger_json_input.get('host', 'localhost')
+        base_path = ensure_trailing_slash(swagger_json_input.get('basePath', '/'))
+        schemes = swagger_json_input.get('schemes', ['http'])
+        base_url = f"{schemes[0]}://{host}{base_path}"
+    
+    with open(output_file_input, "w", encoding="utf-8") as f:
         for path, methods in swagger_json_input['paths'].items():
             for method, details in methods.items():
-                request_url = build_request_url(schemes[0], host, base_path, path)
+                request_url = build_request_url(base_url, path)
                 comments, query_params = process_parameters(details.get('parameters', []))
                 if query_params:
                     request_url += '?' + '&'.join(query_params)
                 request = create_request(method.upper(), request_url, details, comments)
                 f.write(request + '\n\n')
+
+
 
 def ensure_trailing_slash(path):
     """
@@ -45,11 +59,11 @@ def ensure_trailing_slash(path):
     """
     return path if path.endswith('/') else path + '/'
 
-def build_request_url(scheme, host, base_path, path):
+def build_request_url(base_url, path):
     """
     Builds the request URL from its components.
     """
-    return f"{scheme}://{host}{ensure_trailing_slash(base_path)}{path.lstrip('/')}"
+    return f"{ensure_trailing_slash(base_url)}{path.lstrip('/')}"
 
 
 def process_parameters(parameters):
