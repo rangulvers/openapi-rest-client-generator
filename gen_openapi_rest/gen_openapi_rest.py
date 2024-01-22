@@ -7,8 +7,8 @@
 import json
 import sys
 from urllib.parse import urlparse
-import requests
 
+import requests
 
 
 def fetch_swagger_json(source):
