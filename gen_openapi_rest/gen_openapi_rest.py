@@ -4,6 +4,8 @@
 # pylint: disable=line-too-long
 # pylint: disable=broad-exception-caught
 # pylint: disable=invalid-name
+# pylint: disable=missing-function-docstring
+# pylint: disable=too-many-locals
 import json
 import sys
 from urllib.parse import urlparse
@@ -41,7 +43,6 @@ def generate_http_file(swagger_json_input, output_file_input):
         base_path = ensure_trailing_slash(swagger_json_input.get('basePath', '/'))
         schemes = swagger_json_input.get('schemes', ['http'])
         base_url = f"{schemes[0]}://{host}{base_path}"
-    
     with open(output_file_input, "w", encoding="utf-8") as f:
         for path, methods in swagger_json_input['paths'].items():
             for method, details in methods.items():
