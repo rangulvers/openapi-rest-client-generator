@@ -30,9 +30,7 @@ jobs:
       run: |
             pip install pylint
             pylint $(git ls-files '*.py')
-  build:
-    runs-on: ubuntu-latest
-    steps:
+
     - name: Build package
       run: |
             pip install build
