@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 import requests
 
 
+
 def fetch_swagger_json(source):
     """
     Fetches the Swagger JSON from a URL or a local file.
