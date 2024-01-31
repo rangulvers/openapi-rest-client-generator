@@ -8,7 +8,7 @@ with open("readme.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="gen_openapi_rest",
+    name="gen-openapi-rest",
     version="0.0.2",
     packages=find_packages(),
     description="Generate .http files from OpenAPI/Swagger JSON",

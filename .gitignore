@@ -1,2 +1,5 @@
 .vscode/
 *.http
+*.egg-info
+build/
+*.pyc

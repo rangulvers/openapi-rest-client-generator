@@ -129,15 +129,15 @@ def create_body(parameters):
     return body
 
 
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python script.py <swagger-json-source> <output-http-file>")
-        sys.exit(1)
-    swagger_json_source = sys.argv[1]
-    output_file = sys.argv[2]
-    try:
-        swagger_json = fetch_swagger_json(swagger_json_source)
-        generate_http_file(swagger_json, output_file)
-        print(f"Successfully created {output_file} from {swagger_json_source}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+# if __name__ == "__main__":
+#     if len(sys.argv) != 3:
+#         print("Usage: python script.py <swagger-json-source> <output-http-file>")
+#         sys.exit(1)
+#     swagger_json_source = sys.argv[1]
+#     output_file = sys.argv[2]
+#     try:
+#         swagger_json = fetch_swagger_json(swagger_json_source)
+#         generate_http_file(swagger_json, output_file)
+#         print(f"Successfully created {output_file} from {swagger_json_source}")
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
