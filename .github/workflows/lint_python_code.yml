@@ -32,7 +32,7 @@ jobs:
         flake8 . --count --statistics
     - name: Type check with mypy
       run: |
-        mypy pyhon/
+        mypy gen_openapi_rest/
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
