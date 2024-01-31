@@ -1,12 +1,16 @@
 # pylint: skip-file
 from setuptools import find_packages, setup
 
+# read the contents of your README file and add it to the long_description
+with open('README.md', 'r', encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
     name='gen_openapi_rest',
     version='0.0.1',
     packages=find_packages(),
     description='Generate .http files from OpenAPI/Swagger JSON. to be used with VS Code REST Client.',
-    long_description='Generate .http files from OpenAPI/Swagger JSON. to be used with VS Code REST Client',
+    long_description=long_description,
     long_description_content_type='text/markdown',
     author='rangulvers',
     url='https://github.com/rangulvers/openapi-rest-client-generator',
