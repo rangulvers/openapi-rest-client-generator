@@ -4,7 +4,7 @@
 from setuptools import find_packages, setup
 
 # read the contents of your README file and add it to the long_description
-with open("README.md", "r", encoding="utf-8") as f:
+with open("readme.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
