@@ -3,9 +3,12 @@
 import sys
 from .gen_openapi_rest import fetch_swagger_json, generate_http_file
 
+
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python -m gen_openapi_rest <swagger-json-source> <output-http-file>")
+        print(
+            "Usage: python -m gen_openapi_rest <swagger-json-source> <output-http-file>"
+        )
         sys.exit(1)
 
     swagger_json_source = sys.argv[1]
@@ -17,6 +20,7 @@ def main():
         print(f"Successfully created {output_file} from {swagger_json_source}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()

@@ -8,7 +8,6 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=too-many-locals
 import json
-import sys
 from urllib.parse import urlparse
 
 import requests
