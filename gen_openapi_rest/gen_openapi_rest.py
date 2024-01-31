@@ -111,7 +111,7 @@ def create_headers(parameters):
         if parameter["in"] == "header":
             headers += (
                 f"{parameter['name']}:"
-                f"{parameter.get('default','{'+parameter['name']+'}')}\n"
+                f"{parameter.get('default', '{'+parameter['name']+'}')}\n"
             )
     return headers
 
