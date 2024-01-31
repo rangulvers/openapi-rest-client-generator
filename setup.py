@@ -9,7 +9,7 @@ with open("readme.md", "r", encoding="utf-8") as f:
 
 setup(
     name="gen_openapi_rest",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     description="Generate .http files from OpenAPI/Swagger JSON",
     long_description=long_description,
