@@ -1,10 +1,17 @@
 # gen-openapi-rest/__main__.py
-
+# pylint: disable=line-too-long
+# pylint: disable=broad-exception-caught
+# pylint: disable=invalid-name
+# pylint: disable=missing-function-docstring
+# pylint: disable=missing-module-docstring
+# pylint: disable=too-many-locals
 import sys
 from .gen_openapi_rest import fetch_swagger_json, generate_http_file
 
 
 def main():
+    """_summary_
+    """
     if len(sys.argv) != 3:
         print(
             "Usage: python -m gen_openapi_rest <swagger-json-source> <output-http-file>"
