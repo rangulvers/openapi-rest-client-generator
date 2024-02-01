@@ -6,6 +6,7 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=too-many-locals
 import sys
+
 from .gen_openapi_rest import fetch_swagger_json, generate_http_file
 
 
