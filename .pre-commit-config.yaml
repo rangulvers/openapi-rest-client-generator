@@ -11,10 +11,7 @@ repos:
     rev: 5.13.2
     hooks:
       - id: isort
-  - repo: https://github.com/psf/black
-    rev: 22.10.0
-    hooks:
-      - id: black
+
   - repo: local
     hooks:
       - id: pylint
@@ -46,3 +43,7 @@ repos:
       - id: python-no-eval
       - id: python-no-log-warn
       - id: python-check-blanket-type-ignore
+  - repo: https://github.com/psf/black
+    rev: 22.10.0
+    hooks:
+      - id: black
