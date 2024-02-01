@@ -1,12 +1,6 @@
 """Generates a .http file from a Swagger JSON file.
 
 """
-
-# pylint: disable=line-too-long
-# pylint: disable=broad-exception-caught
-# pylint: disable=invalid-name
-# pylint: disable=missing-function-docstring
-# pylint: disable=too-many-locals
 import json
 from urllib.parse import urlparse
 
@@ -26,26 +20,23 @@ def fetch_swagger_json(source):
         return json.load(f)
 
 
-def generate_http_file(swagger_json_input, output_file_input):
-    """_summary_
-
-    Args:
-        swagger_json_input (_type_): _description_
-        output_file (_type_): _description_
-    """
-    # Check for OpenAPI version and handle 'servers' or 'host' + 'basePath'
+def get_base_url(swagger_json_input):
+    """Extracts and returns the base URL from the Swagger JSON input."""
     if swagger_json_input.get("openapi", "").startswith("3."):
-        # OpenAPI 3.x.x
         servers = swagger_json_input.get("servers", [])
-        base_url = servers[0]["url"] if servers else ""
-    else:
-        # Swagger 2.0
-        host = swagger_json_input.get("host", "localhost")
-        base_path = ensure_trailing_slash(swagger_json_input.get("basePath", "/"))
-        schemes = swagger_json_input.get("schemes", ["http"])
-        base_url = f"{schemes[0]}://{host}{base_path}"
+        return servers[0]["url"] if servers else ""
+
+    # For Swagger 2.0
+    host = swagger_json_input.get("host", "localhost")
+    base_path = ensure_trailing_slash(swagger_json_input.get("basePath", "/"))
+    schemes = swagger_json_input.get("schemes", ["http"])
+    return f"{schemes[0]}://{host}{base_path}"
+
+
+def write_requests_to_file(output_file_input, base_url, paths):
+    """Writes the HTTP requests to the output file."""
     with open(output_file_input, "w", encoding="utf-8") as f:
-        for path, methods in swagger_json_input["paths"].items():
+        for path, methods in paths.items():
             for method, details in methods.items():
                 request_url = build_request_url(base_url, path)
                 parameters = details.get("parameters", [])
@@ -54,6 +45,12 @@ def generate_http_file(swagger_json_input, output_file_input):
                     request_url += "?" + "&".join(query_params)
                 request = create_request(method.upper(), request_url, details, comments)
                 f.write(request + "\n\n")
+
+
+def generate_http_file(swagger_json_input, output_file_input):
+    """Generates an HTTP file from Swagger JSON input."""
+    base_url = get_base_url(swagger_json_input)
+    write_requests_to_file(output_file_input, base_url, swagger_json_input["paths"])
 
 
 def ensure_trailing_slash(path):
