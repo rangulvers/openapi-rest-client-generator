@@ -31,3 +31,4 @@ The file can be loaded locally or pulled directly from an url e.g `https://petst
 
 ```bash
 python gen_openapi_rest.py <swagger-json-source> <output-http-file>
+```
