@@ -44,6 +44,6 @@ repos:
       - id: python-no-log-warn
       - id: python-check-blanket-type-ignore
   - repo: https://github.com/psf/black
-    rev: 22.10.0
+    rev: main
     hooks:
       - id: black
